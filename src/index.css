@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Opcional: Um fundo suave para combinar com doces */
+body {
+  margin: 0;
+  background-color: #FFFDF5; 
+  color: #4A3728;
+}
