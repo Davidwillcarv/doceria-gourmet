@@ -1,16 +1,36 @@
-# React + Vite
+# 🍬 Ateliê Gourmet - E-commerce Boutique
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Um catálogo digital artesanal desenvolvido para oferecer uma experiência de compra premium e fluida. O projeto foca em design minimalista, performance e segurança administrativa.
 
-Currently, two official plugins are available:
+## 🚀 Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Vitrine Dinâmica**: Galeria de produtos com carregamento otimizado e interface responsiva.
+- **Carrinho de Compras (Cart)**: Sistema de sacola lateral persistente para uma jornada de compra sem interrupções.
+- **Painel Administrativo Privado**: Área restrita para gestão de métricas confidenciais.
+- **Segurança de Rotas**: Proteção de dados financeiros através de autenticação por estado (Login).
+- **Checkout Integrado**: Fluxo simplificado para finalização de pedidos.
 
-## React Compiler
+## 🛠️ Tecnologias Utilizadas
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React**: Biblioteca principal para construção da interface.
+- **Vite**: Ferramenta de build de última geração para performance rápida em desenvolvimento.
+- **Tailwind CSS**: Framework utilitário para estilização moderna e responsiva.
+- **Lucide React**: Biblioteca de ícones leves e elegantes.
+- **React Router**: Gestão de navegação e proteção de rotas privadas.
 
-## Expanding the ESLint configuration
+## 🔐 Acesso Administrativo (Teste)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Para garantir a confidencialidade das métricas de negócio (faturamento e ticket médio), o painel está protegido:
+
+1. Aceda à rota `/login`.
+2. Utilize as credenciais de teste configuradas no sistema.
+3. Após o login bem-sucedido, o sistema redireciona automaticamente para o Dashboard Administrativo.
+
+## 📦 Como Executar o Projeto
+
+```bash
+# Instalar as dependências
+npm install
+
+# Iniciar o servidor de desenvolvimento
+npm run dev
