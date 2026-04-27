@@ -1,37 +1,92 @@
-import React from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
+// A linha abaixo é a que falta e está causando o erro!
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-export default function Login({ setLogado }) {
+export default function Login({ setLogadoAdmin, setCliente }) {
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  // Estados para controlar o formulário
+  const [isCadastro, setIsCadastro] = useState(false);
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [nome, setNome] = useState("");
+
+  const lidarComLogin = (e) => {
     e.preventDefault();
-    setLogado(true); // Ativa o acesso ao Admin
-    navigate('/admin'); // Te joga direto para o painel protegido
+    // MOCK: Admin
+    if (email === "admin@luzdoces.com" && senha === "123") {
+      setLogadoAdmin(true);
+      navigate("/admin");
+      return;
+    }
+    // MOCK: Cliente
+    if (email === "cliente@teste.com" && senha === "123") {
+      setCliente({ name: "Maria Silva", email });
+      navigate("/");
+      return;
+    }
+    alert(
+      "Dados de teste: admin@luzdoces.com ou cliente@teste.com (senha 123)",
+    );
+  };
+
+  const lidarComCadastro = (e) => {
+    e.preventDefault();
+    setCliente({ name: nome, email });
+    navigate("/");
   };
 
   return (
-    <div className="min-h-screen bg-cor-fundo flex items-center justify-center px-4">
-      <div className="max-w-md w-full bg-white rounded-[2.5rem] p-10 shadow-xl border border-stone-100 relative">
-        
-        {/* Botão para voltar à Home e não ficar preso */}
-        <Link to="/" className="absolute top-6 left-6 text-stone-400 hover:text-cor-texto transition-colors">
-          <ArrowLeft size={20} />
-        </Link>
-
-        <div className="text-center mb-10">
-          <h1 className="font-serif text-3xl text-cor-texto italic">Área Restrita</h1>
-          <p className="text-[10px] text-stone-400 mt-2 font-bold uppercase tracking-widest italic">Somente Administradores</p>
+    <div className="min-h-screen bg-[#FCD5D9] flex items-center justify-center p-4 font-serif text-[#6B4E54]">
+      <div className="bg-white w-full max-w-md rounded-[2.5rem] p-10 shadow-xl border border-white/50">
+        <div className="text-center mb-8">
+          <div className="w-16 h-16 rounded-full border border-[#6B4E54] flex items-center justify-center mx-auto mb-4 bg-[#FCD5D9]/20 font-bold italic">
+            Luz
+          </div>
+          <h2 className="text-3xl italic">
+            {isCadastro ? "Criar Conta" : "Bem-vinda"}
+          </h2>
         </div>
 
-        <form onSubmit={handleLogin} className="space-y-6">
-          <input type="email" required className="w-full bg-[#FDFBF7] border border-stone-100 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-cor-detalhe/10" placeholder="Usuário Admin" />
-          <input type="password" required className="w-full bg-[#FDFBF7] border border-stone-100 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-cor-detalhe/10" placeholder="Senha" />
-          <button type="submit" className="w-full bg-cor-texto text-white py-4 rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-cor-detalhe transition-all shadow-lg active:scale-95">
-            Acessar Painel
+        <form
+          onSubmit={isCadastro ? lidarComCadastro : lidarComLogin}
+          className="space-y-4"
+        >
+          {isCadastro && (
+            <input
+              type="text"
+              placeholder="Nome completo"
+              className="w-full p-4 rounded-2xl bg-[#FCD5D9]/10 border border-[#FCD5D9] outline-none"
+              onChange={(e) => setNome(e.target.value)}
+              required
+            />
+          )}
+          <input
+            type="email"
+            placeholder="E-mail"
+            className="w-full p-4 rounded-2xl bg-[#FCD5D9]/10 border border-[#FCD5D9] outline-none"
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Senha"
+            className="w-full p-4 rounded-2xl bg-[#FCD5D9]/10 border border-[#FCD5D9] outline-none"
+            onChange={(e) => setSenha(e.target.value)}
+            required
+          />
+
+          <button className="w-full bg-[#6B4E54] text-white py-4 rounded-2xl font-bold uppercase text-[10px] tracking-widest shadow-lg hover:bg-[#B58D94] transition-all mt-4">
+            {isCadastro ? "Cadastrar" : "Entrar"}
           </button>
         </form>
+
+        <button
+          onClick={() => setIsCadastro(!isCadastro)}
+          className="w-full mt-6 text-[10px] uppercase tracking-widest opacity-60 hover:opacity-100"
+        >
+          {isCadastro ? "Já sou cliente" : "Criar nova conta"}
+        </button>
       </div>
     </div>
   );

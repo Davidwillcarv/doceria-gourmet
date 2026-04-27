@@ -2,9 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Opcional: Um fundo suave para combinar com doces */
-body {
-  margin: 0;
-  background-color: #FFFDF5; 
-  color: #4A3728;
+:root {
+  /* O rosa exato do fundo do logotipo */
+  --cor-fundo: #FCD5D9; 
+  /* O castanho escuro elegante das letras "Luz" */
+  --cor-texto: #6B4E54; 
+  /* Um tom intermediário para detalhes e botões */
+  --cor-detalhe: #B58D94; 
+  /* Branco puro para os cartões de produto brilharem */
+  --cor-branco: #FFFFFF;
 }
